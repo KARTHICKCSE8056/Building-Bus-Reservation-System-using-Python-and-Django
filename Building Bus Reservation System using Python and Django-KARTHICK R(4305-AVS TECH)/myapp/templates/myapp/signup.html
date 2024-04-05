@@ -1,0 +1,50 @@
+{% extends 'myapp/base.html' %}
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-7 col-sm-10 col-xs-12">
+            <div class="card border-primary rounded-3">
+                <div class="card-header bg-primary bg-gradient-transparent">
+                    <div class="card-title text-center h3 text-dark">Registration</div>
+                </div>
+                <div class="card-body bg-secondary bg-gradient-transparent">
+                    <form action="{% url 'signup' %}" method="post" id="registration-form">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="email" class="form-label font-weight-bold text-dark">Email:</label>
+                            <input name="email" class="form-control rounded-pill" type="email" id="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="mobilenumber" class="form-label font-weight-bold text-dark">Mobile No:</label>
+                            <input name="mobilenumber" class="form-control rounded-pill" type="tel" id="mobilenumber" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="name" class="form-label font-weight-bold text-dark">Username:</label>
+                            <input name="name" id="name" class="form-control rounded-pill" type="text" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label font-weight-bold text-dark">Password:</label>
+                            <input name="password" id="password" class="form-control rounded-pill" type="password" required>
+                        </div>
+                        <div class="text-center">
+                            <button class="btn btn-primary rounded-pill px-4" form="registration-form" type="submit">Create Account</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .bg-gradient-transparent {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0.5)), linear-gradient(135deg, #007bff, #6c757d);
+        /* Adjust transparency and gradient colors here */
+    }
+    
+    .text-dark {
+        color: #343a40; /* Change to your preferred dark color */
+    }
+</style>
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'myapp/base.html' %} 
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8 col-sm-10 col-xs-12">
+            <div class="card border-primary rounded-3 shadow">
+                <div class="card-header bg-primary text-light">
+                    <h3 class="card-title mb-0">Find Bus</h3>
+                </div>
+                <div class="card-body">
+                    <form action="{% url 'findbus' %}" method="post" id="find-form">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="source" class="form-label">From</label>
+                            <input name="source" class="form-control rounded-0" type="text" id="source" value="{% if data.source %}{{ data.source }}{% endif %}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="destination" class="form-label">Destination</label>
+                            <input name="destination" id="destination" class="form-control rounded-0" type="text" value="{% if data.destination %}{{ data.destination }}{% endif %}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="date" class="form-label">Date</label>
+                            <input name="date" id="date" class="form-control rounded-0" type="date" value="{% if data.date %}{{ data.date }}{% endif %}" required>
+                        </div>
+                        {% if error %}
+                        <div class="alert alert-danger mb-3">
+                            {{ error }}
+                        </div>
+                        {% endif %}
+                        <div class="text-center">
+                            <button class="btn btn-primary rounded-0 w-50" form="find-form">Find</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
